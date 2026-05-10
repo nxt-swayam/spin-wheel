@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Decision Spinner by NxT</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts: Orbitron (display) + Syne (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── Ambient background particles ── -->
+  <div class="bg-grid"></div>
+  <div id="particles"></div>
+
+  <!-- ── Confetti canvas (full-screen overlay) ── -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- ══════════════════════════════════════ -->
+  <!--                 APP                   -->
+  <!-- ══════════════════════════════════════ -->
+  <div class="app">
+
+    <!-- HEADER -->
+    <header class="hero">
+      <div class="hero-eyebrow">✦ Develop by nxt-swayam ✦</div>
+      <h1 class="hero-title">DECISION<br /><span class="gradient-text">SPINNER</span></h1>
+      <p class="hero-sub">Let the cosmos decide. Spin your fate.</p>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="stage">
+
+      <!-- LEFT PANEL — option list -->
+      <aside class="panel panel-left glass">
+        <div class="panel-header">
+          <span class="panel-icon">⚡</span>
+          <h2>Options</h2>
+          <span class="option-count" id="option-count">6</span>
+        </div>
+
+        <ul class="option-list" id="option-list">
+          <!-- Populated by JS -->
+        </ul>
+
+        <div class="panel-actions">
+          <button class="btn btn-ghost btn-sm" id="reset-btn">↺ Reset to Default</button>
+          <button class="btn btn-ghost btn-sm btn-danger" id="clear-btn">✕ Clear All</button>
+        </div>
+      </aside>
+
+      <!-- CENTER — wheel -->
+      <section class="wheel-zone">
+        <!-- Pointer indicator -->
+        <div class="pointer" aria-label="Wheel pointer">
+          <div class="pointer-arrow"></div>
+          <div class="pointer-glow"></div>
+        </div>
+
+        <!-- Wheel wrapper (for glow ring) -->
+        <div class="wheel-wrapper" id="wheel-wrapper">
+          <canvas id="wheel-canvas" width="520" height="520"></canvas>
+
+          <!-- SPIN button overlaid in center -->
+          <button class="spin-btn" id="spin-btn" aria-label="Spin the wheel">
+            <span class="spin-btn-inner">
+              <span class="spin-label">SPIN</span>
+              <span class="spin-sub">Click me!</span>
+            </span>
+            <div class="spin-ring spin-ring-1"></div>
+            <div class="spin-ring spin-ring-2"></div>
+          </button>
+        </div>
+      </section>
+
+      <!-- RIGHT PANEL — add option -->
+      <aside class="panel panel-right glass">
+        <div class="panel-header">
+          <span class="panel-icon">✦</span>
+          <h2>Add Option</h2>
+        </div>
+
+        <div class="add-form">
+          <div class="input-wrap">
+            <input
+              type="text"
+              id="option-input"
+              class="neon-input"
+              placeholder="Type an option…"
+              maxlength="30"
+              autocomplete="off"
+            />
+            <span class="input-glow"></span>
+          </div>
+          <button class="btn btn-primary" id="add-btn">
+            <span>+ Add Option</span>
+          </button>
+        </div>
+
+        <div class="color-picker-section">
+          <label class="section-label">Accent Color</label>
+          <div class="color-swatches" id="color-swatches"></div>
+        </div>
+
+        <div class="stats glass-inner">
+          <div class="stat">
+            <span class="stat-num" id="stat-options">6</span>
+            <span class="stat-label">Options</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num" id="stat-spins">0</span>
+            <span class="stat-label">Spins</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num" id="stat-last">—</span>
+            <span class="stat-label">Last Win</span>
+          </div>
+        </div>
+
+        <!-- Spin history -->
+        <div class="history-section">
+          <div class="section-label">Spin History</div>
+          <ul class="history-list" id="history-list">
+            <li class="history-empty">No spins yet…</li>
+          </ul>
+        </div>
+      </aside>
+
+    </main>
+  </div><!-- /.app -->
+
+  <!-- ══ RESULT POPUP ══ -->
+  <div class="popup-overlay" id="popup-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="popup glass" id="popup">
+      <div class="popup-glow"></div>
+      <button class="popup-close" id="popup-close" aria-label="Close">✕</button>
+      <div class="popup-icon">🎯</div>
+      <div class="popup-eyebrow">The wheel has spoken!</div>
+      <div class="popup-result" id="popup-result">Maybe</div>
+      <div class="popup-tagline" id="popup-tagline">Trust the cosmos.</div>
+      <button class="btn btn-primary popup-spin-again" id="popup-spin-again">Spin Again</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
