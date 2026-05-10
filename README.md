@@ -34,4 +34,4 @@ Spin the wheel and let the cosmos decide your fate.
 1. Clone the repository
 
 ```bash
-git clone 
+git clone https://github.com/nxt-swayam/spin-wheel.git
